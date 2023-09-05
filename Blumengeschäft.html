@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blumengeschäft</title>
+<link rel="stylesheet" href="stylesheet.css">     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+</head>
+<body>
+
+
+<div class="container-md">
+    <div class="row">
+    
+        <div class="col-lg-8">
+            <h1>Blumengeschäft</h1>
+            <div class="row">  
+                <div class="col-sm">
+                    <form class="form-floating">
+                        <input type="Name" class="form-control" id="Name" placeholder="Max Mustermann" value="Max Mustermann">
+                        <label for="Name">Name</label>
+                        </form>
+                    </div>
+
+
+                <div class="col-lg">
+                    <form class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="Email">
+                        <label for="floatingInput">E-Mail:</label>
+                    </form>
+                    </div>
+                </div>
+        
+
+
+            <div class="row">  
+                <div class="form-floating col-sm-8">
+                    <select class="form-select" id="floatingSelect" aria-label="Produkte:" onchange="eventListenerBlumenauswahl();" id="blumenselect">
+              
+                    <option value=Sonnenblume data-preis="3,49">Sonnenblume</option>    
+                    <option value=Tulpe data-preis="1,79">Tulpe</option>
+                    <option value=Linie data-preis="4,39">Lilie</option>
+                    <option value=Rose data-preis="5,99">Rose</option>
+                    <option value=Edelweiß data-preis="7,99">Edelweiß</option>
+                    </select>
+                    <label for="floatingSelect">Produkte</label>
+                </div>
+          
+
+            <div class="col-lg-1">
+                <label for="button">Preis<br><span id="preisfeld"></span></label>
+                </div>
+                <div class="col-lg-3">
+                <button type="button" class="btn btn-success" onclick="eventListenerButtonhinzufuegen();">Hinzufügen</button>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label"></label>
+                    <textarea class="form-control" style="height: 450px" id="exampleFormControlTextarea1" rows="3">Hallo, ich habe folgende Anmerkung</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            
+                <h1>Warenkorb:</h1>
+            
+                <table id="preistabelle" class="table table-striped">
+                    <tr>
+                        <th>Prudukt</th>
+                        <th>Preis</th>
+                    </tr>
+                </table>
+                <p>Gesamtsumme: <span id="gesamtpreis">0</span>€</p>
+
+                <div class="container text-center">
+                    <button type="button" class="btn btn-primary btn-lg" onclick="eventListenerButtonbestellen();">Bestellen</button>
+                </div>
+
+        
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    function eventListenerBlumenauswahl(){
+        document.getElementById("Hallo1");
+        const preis = document.getElementById("floatingSelect").selectedOptions[0].attributes['data-preis'].nodeValue;
+        document.getElementById("preisfeld").innerText = `${preis} €`;
+
+    }
+    function eventListenerButtonhinzufuegen() {
+        //Produktnamen ermitteln
+        const produktname = document.getElementById("floatingSelect").selectedOptions[0].value;
+
+        //Preis ermitteln (von oben kopiert)
+        const preis = document.getElementById("floatingSelect").selectedOptions[0].attributes['data-preis'].nodeValue;
+
+        //Tabellenzeile hinzufügen
+        const tabellenzeile = `<tr> <td>${produktname}</td> <td>${preis}</td> </tr>`
+        document.getElementById('preistabelle').innerHTML = document.getElementById('preistabelle').innerHTML + tabellenzeile;
+
+        //Gesamtpreis ändern
+        // (a) aktuellen Gesamtpreis auslesen
+        let gesamtpreis = document.getElementById('gesamtpreis').innerHTML
+        // (b) Preis addieren
+        let gesamtpreis2 = Number(gesamtpreis.replace(",", ".")) + Number (preis.replace(",", "."));
+        // (c) Preis zurückschreiben
+        document.getElementById('gesamtpreis').innerHTML = gesamtpreis2;
+        // alert("hallo2");
+}
+
+    function eventListenerButtonbestellen(){
+        alert("hallo3");
+    }
+</script>
+</body>
+</html>
