@@ -2,26 +2,29 @@
 
 // Datenbankverbindung konfigurieren
 datasource db {
-  provider = "sqlite"
-  url      = "file:./smart_Bistro.db"
+    provider = "sqlite"
+    url      = "file:./smart_Bistro.db"
 }
+
 generator client {
     provider = "prisma-client-js"
-    
 }
+
 // Benutzer-Tabelle
 model User {
-    id      String @id @default(cuid())
-    name    String @unique
+    id       String @id @default(cuid())
+    name     String @unique
     password String
-    mail String
+    mail     String
     menus    Menu[]
 }
 
 model Menu {
-    id       String  @id @default(cuid())
-    name     String  @unique
-    preis Float
-    user   User   @relation(fields: [user_id], references: [id])
+    id      String @id @default(cuid())
+    name    String
+    preis   Float
+    user    User   @relation(fields: [user_id], references: [id])
     user_id String
+
+    @@unique([name, user_id])
 }
