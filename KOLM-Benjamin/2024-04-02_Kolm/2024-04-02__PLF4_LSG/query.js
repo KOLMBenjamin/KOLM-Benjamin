@@ -1,4 +1,4 @@
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require('@prisma-client-js');
 const prisma = new PrismaClient();
 
 async function getWatchlistsForUser(userId) {
