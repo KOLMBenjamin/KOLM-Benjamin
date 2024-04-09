@@ -1,4 +1,4 @@
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require('@prisma-client-js');
 const prisma = new PrismaClient();
 console.log('here is my query:');
 // TODO
