@@ -10,7 +10,7 @@ async function seed() {
     const userCountActual = await prisma.benutzer.count();
     for (let i = 1; i <= userCountTarget - userCountActual; i++) {
         const user = {
-            Fullname: fakerDE.person.fullName(),
+            fullname: fakerDE.person.fullName(),
             Email: fakerDE.internet.email(),
         };
         console.log('seeding');
