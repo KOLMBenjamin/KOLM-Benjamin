@@ -15,7 +15,7 @@ async function seed() {
         };
         console.log('seeding');
         const createBenutzer = await prisma.benutzer.create({
-            data: user,
+            data: user,ls
         });
     }
     console.log(`${await prisma.benutzer.count()} Benutzer in DB`);

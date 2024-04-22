@@ -62,4 +62,21 @@ async function exampleQueries() {
     }
 }
 
+async function exampleQueries() {
+    try {
+        const trackName = 'Track Name'; 
+        const watchlistsContainingTrack =getWatchlistsContainingTrack(trackName);
+        console.log('Watchlists containing track:', watchlistsContainingTrack);
+
+        const usersWithTrackOnWatchlist = await getUsersWithTrackOnWatchlist(trackName);
+        console.log('Users with track on watchlist:', usersWithTrackOnWatchlist);
+    } catch (error) {
+        console.error('Fehler:', error.message);
+    } finally {
+        await prisma.$disconnect();
+    }
+}
+
 exampleQueries();
+exampleQueries();
+
